@@ -14,7 +14,6 @@ import (
 	"go/ast"
 	"go/parser"
 	"go/token"
-	"io/ioutil"
 	"log"
 	"os"
 	"path"
@@ -328,7 +327,7 @@ func Translate(filename string, write bool) error {
 	code = strings.Replace(code, SP, " ", -1)
 
 	if write {
-		if err = ioutil.WriteFile(baseFilename+".js", []byte(code), 0664); err != nil {
+		if err = os.WriteFile(baseFilename+".js", []byte(code), 0664); err != nil {
 			return err
 		}
 	} else {
@@ -342,7 +341,7 @@ func Translate(filename string, write bool) error {
 		min = strings.Replace(min, SP, "", -1)
 
 		if write {
-			if err = ioutil.WriteFile(baseFilename+".min.js", []byte(min), 0664); err != nil {
+			if err = os.WriteFile(baseFilename+".min.js", []byte(min), 0664); err != nil {
 				return err
 			}
 		} else {
